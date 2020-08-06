@@ -6,27 +6,21 @@ Created on Fri Aug  7 02:22:00 2020
 """
 
 digits = {
-        0: 'zero',
-        1: 'one',
-        2: 'two',
-        3: 'three',
-        4: 'four',
-        5: 'five',
-        6: 'six',
-        7: 'seven',
-        8: 'eight',
-        9: 'nine',
+        0: 'Zero',
+        1: 'One',
+        2: 'Two',
+        3: 'Three',
+        4: 'Four',
+        5: 'Five',
+        6: 'Six',
+        7: 'Seven',
+        8: 'Eight',
+        9: 'Nine',
     }
 
 ten_plus = {
-        11: 'elevn',
-        12: 'twelve',
-        13: 'thirteen',
-        14: 'fourteen',
         15: 'fifteen',
         16: 'sixteen',
-        17: 'seventeen',
-        18: 'eighteen',
         19: 'nineteen'
     }
 
@@ -35,11 +29,15 @@ tens = {
         20: 'twenty',
         30: 'thirty',
         40: 'forty',
-        50: 'fifty',
-        60: 'sixty',
-        70: 'seventy',
-        80: 'eighty',
-        90: 'ninety',
+        10: 'Ten',
+        20: 'Twenty',
+        30: 'Thirty',
+        40: 'Forty',
+        50: 'Fifty',
+        60: 'Sixty',
+        70: 'Seventy',
+        80: 'Eighty',
+        90: 'Ninety',
     }
 
 class Check:
@@ -47,27 +45,75 @@ class Check:
         self.n = n
         
     def single_digit(self):
-        print(digits[self.n].title())
+        print(digits[self.n].title(), end=" ")
         
     def tens(self):
-        print(tens[self.n].title())
+        print(tens[self.n].title(), end=" ")
         
-    def hundreds(self):
-        temp = self.n / 100
-        print(digits[temp].title(), "hundred")
-        
+    def hundred(self):
+        print("Hundred", end=" ")        
+    
+    def thousand(self):
+        print("Thousand", end=" ")
+    
+    def million(self):
+        print("Million", end=" ")
+    def billion(self):
+        print("Billion", end=" ")        
+
+
+
 def convert(n):
-    temp = Check(n)
+    num = Check(n)
     if n in range(0, 10):
-        temp.single_digit()
+        num.single_digit()
     elif n % 10 == 0:
         if n % 100 != 0:
+            num.tens()
+        elif n % 1000 != 0:
+            n = n / 100
+            temp = Check(n)
+            temp.single_digit()
+            temp.hundred()
+        elif n % 10000 != 0:
+            n = n / 1000
+            temp = Check(n)
+            temp.single_digit()
+            temp.thousand()
+        elif n % 100000 != 0:
+            n = n / 1000
+            temp = Check(n)
             temp.tens()
-        elif n % 100 == 0:
-            temp.hundreds()
-        
-        
-convert(300)        
+            temp.thousand()
+        elif n % 1000000 != 0:
+            n = n / 100000
+            temp = Check(n)
+            temp.single_digit()
+            temp.hundred()
+            temp.thousand()
+        elif n % 10000000 != 0:
+            n = n / 1000000
+            temp = Check(n)
+            temp.single_digit()
+            temp.million()
+        elif n % 100000000 != 0:
+            n = n / 1000000
+            temp = Check(n)
+            temp.tens()
+            temp.million()
+        elif n % 1000000000 != 0:
+            n = n / 100000000
+            temp = Check(n)
+            temp.single_digit()
+            temp.hundred()
+            temp.million()
+        elif n % 10000000000 != 0:
+            n = n / 1000000000
+            temp = Check(n)
+            temp.single_digit()
+            temp.billion()
+            
+convert(2000000000)        
         
         
         
