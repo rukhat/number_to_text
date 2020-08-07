@@ -159,15 +159,19 @@ def switch(n):
         millions(n)
     elif l in range (10, 13):
         billions(n)
+    else:
+        print("Range crossed. Sorry! Try again.", end="")
 
 def main():
-    n = int(input("Enter a number:\n>> "))
+    while True:
+        n = int(input("Enter a number (positive or negative):\n>> "))
     
-    if n >= 0:
-        switch(n)
-    else:
-        print("Minus", end = " ")
-        switch(abs(n))
+        if n >= 0:
+            switch(n)
+        else:
+            print("Minus", end = " ")
+            switch(abs(n))
+        print("\n")
                 
 if __name__ == "__main__":
     main()
