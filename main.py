@@ -93,7 +93,59 @@ def thousands(n):
         print("Thousand", end = " ")
         if d012:
             hundreds(d012)
-                
+             
+def millions(n):
+    if n // 1000000 in range(0, 10):
+        d6 = n // 1000000
+        d05 = n % 1000000
+    
+        print(digits[d6], end = " ")
+        print("Million", end = " ")
+        if d05:
+            thousands(d05)
+    elif n // 10000000 in range(0, 10):
+        d67 = n // 1000000
+        d05 = n % 1000000
+        
+        under_100(d67)
+        print("Million", end = " ")
+        if d05:
+            thousands(d05)
+    elif n // 100000000 in range(0, 10):
+        d678 = n // 1000000
+        d05 = n % 1000000
+        
+        hundreds(d678)
+        print("Million", end = " ")
+        if d05:
+            thousands(d05)
+
+def billions(n):
+    if n // 1000000000 in range(0, 10):
+        d9 = n // 1000000000
+        d08 = n % 1000000000
+    
+        print(digits[d9], end = " ")
+        print("Billion", end = " ")
+        if d08:
+            millions(d08)
+    elif n // 10000000000 in range(0, 10):
+        d910 = n // 1000000000
+        d09 = n % 1000000000
+        
+        under_100(d910)
+        print("Billion", end = " ")
+        if d08:
+            millions(d08)
+    elif n // 100000000000 in range(0, 10):
+        d91011 = n // 1000000000
+        d08 = n % 1000000000
+        
+        hundreds(d91011)
+        print("Billion", end = " ")
+        if d08:
+            millions(d08)
+    
 def switch(n):
     l = len(str(n))
     
@@ -103,8 +155,10 @@ def switch(n):
         hundreds(n)
     elif l in range (4, 7):
         thousands(n)
-    
-                
+    elif l in range (7, 10):
+        millions(n)
+    elif l in range (10, 13):
+        billions(n)
 
 def main():
     n = int(input("Enter a number:\n>> "))
@@ -117,34 +171,3 @@ def main():
                 
 if __name__ == "__main__":
     main()
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
