@@ -69,13 +69,30 @@ def hundreds(n):
         under_100(d01)
 
 def thousands(n):
-    d3 = n // 1000
-    d012 = n % 1000
+    if n // 1000 in range(0, 10):
+        d3 = n // 1000
+        d012 = n % 1000
+    
+        print(digits[d3], end = " ")
+        print("Thousand", end = " ")
+        if d012:
+            hundreds(d012)
+    elif n // 10000 in range(0, 10):
+        d34 = n // 1000
+        d012 = n % 1000
         
-    print(digits[d3], end = " ")
-    print("Thousand", end = " ")
-    if d012:
-        hundreds(d012)        
+        under_100(d34)
+        print("Thousand", end = " ")
+        if d012:
+            hundreds(d012)
+    elif n // 100000 in range(0, 10):
+        d345 = n // 1000
+        d012 = n % 1000
+        
+        hundreds(d345)
+        print("Thousand", end = " ")
+        if d012:
+            hundreds(d012)
                 
 def switch(n):
     l = len(str(n))
@@ -84,7 +101,7 @@ def switch(n):
         under_100(n)
     elif l == 3:
         hundreds(n)
-    elif l == 4:
+    elif l in range (4, 7):
         thousands(n)
     
                 
@@ -95,7 +112,7 @@ def main():
     if n >= 0:
         switch(n)
     else:
-        print("Minus ")
+        print("Minus", end = " ")
         switch(abs(n))
                 
 if __name__ == "__main__":
