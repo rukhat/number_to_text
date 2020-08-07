@@ -1,5 +1,5 @@
-# number_to_text
-A whole number to text converter using Python
+# number_to_word
+A whole number to words converter using Python
 
 Range is -1,000,000,000 to 1,000,000,000
 
